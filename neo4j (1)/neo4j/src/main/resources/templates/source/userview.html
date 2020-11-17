@@ -10,6 +10,33 @@
 
     <title>Power Source Recommender</title>
 </head>
+
+<style>
+    /* Style to center grid column */
+    .col-centered{
+        float: none;
+        margin: 0 auto;
+    }
+
+    /* Some custom styles to beautify this example */
+    .row{
+        /* background: #dbdfe5; */
+    }
+    .demo-content{
+        padding: 25px;
+        font-size: 18px;
+        background: #abb1b8;
+    }
+    .a {
+        color: hotpink;
+    }
+    .h1 {
+    margin-top:50px;
+    margin-left:50px
+    }
+}
+</style>
+
 <body>
 
 <!-- Tabs at the beggining of the page: About, Questions, Power Source Ranking -->
@@ -27,12 +54,26 @@
         </li>
     </ul>
 
+
     <!-- linking tabs with the content it should show -->
     <div class="tab-content">
 
         <!-- content of about tab -->
-        <div role="tabpanel" class="tab-pane" id="about">
-
+        <div role="tabpanel" class="tab-pane active" id="about">
+            <div class="container">
+                <img th:src="image1.jpg" th:alt="image1.jpg" class="rounded float-centre" height="250px">
+            </div>
+            <div class="container">
+                <div class="col text-center">
+                <h1>Dobierz źródło energii do swoich potrzeb</h1>
+                    <div class="container my-3 bg-light">
+                        <div class="col-md-12 text-center">
+                            <button type="button" class="btn btn-lg"><a href="#questions" class="nav-link" role="tab" data-toggle="tab">Pytania personalizujące</a></button>
+                            <button type="button" class="btn btn-lg" onclick="#questions"><a href="#recommendations" class="nav-link" role="tab" data-toggle="tab">Recomendacje</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
 
@@ -82,7 +123,7 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="gridCheck1">
                                 <label class="form-check-label" for="gridCheck1">
-                                    Zamierzam stosować się do zaleceń dot. konserwacji (regularne czyszczenie, obserwacja)                    </label>
+                                    Mam czas i checi by dbać o regularną konserwację (regularne czyszczenie, obserwacja)                    </label>
                             </div>
                         </div>
                     </div>
@@ -115,23 +156,25 @@
 
             <!-- content of recommendation tab -->
             <div class="container ">
-                <div th:if="${not #lists.isEmpty(sources)}">
+                <div th:if="${not #lists.isEmpty(sources)}" >
                     <h1></h1>
-                    <h2>Źródła energii</h2>
+                    <h2 class="text-center">Źródła energii</h2>
 
                     <table class="table">
                         <tr>
-                            <th></th>
+                            <th ></th>
                             <th>Rating</th>
                             <th>Nazwa źródła</th>
                             <th>Opis</th>
+                            <th>Roczne koszty utrzymania [zł]</th>
                         </tr>
 
                         <tr th:each="source : ${sources}" height="50px">
-                            <td><img src="${source.url}" th:src="${source.url}" th:alt="${source.url}" height="100px" /></td>
-                            <td th:text="${source.rate}"></td>
-                            <td th:text="${source.name}"></td>
-                            <td th:text="${source.description}"></td>
+                            <td class="align-middle"><img src="${source.url}" th:src="${source.url}" th:alt="${source.url}" height="50px"/></td>
+                            <td th:text="${source.rate}" class="align-middle"></td>
+                            <td th:text="${source.name}" class="align-middle"></td>
+                            <td th:text="${source.description}" class="align-middle"></td>
+                            <td th:text="${source.yearlycosts}" class="align-middle"></td>
                         </tr>
                     </table>
                 </div>

@@ -1,5 +1,7 @@
 package com.example.spring.neo4j;
 
+import org.neo4j.driver.util.Pair;
+
 public class SourceForm {
 
 
@@ -8,6 +10,10 @@ public class SourceForm {
     private String description;
     private String url;
     private Long rate;
+
+    private String longdescription;
+    private Pair<Integer, Integer> investcosts;
+    private Integer yearlycosts;
 
     public Long getId() {
         return id;
@@ -49,4 +55,27 @@ public class SourceForm {
         this.rate = rate;
     }
 
+    public String getLongdescription() {
+        return longdescription;
+    }
+
+    public void setLongdescription(String longdescription) {
+        this.longdescription = longdescription;
+    }
+
+    public Pair<Integer, Integer> getInvestcosts() {
+        return investcosts;
+    }
+
+    public void setInvestcosts(Pair<Integer, Integer> investcosts) {
+        this.investcosts = investcosts;
+    }
+
+    public Integer getYearlycosts() {
+        return yearlycosts;
+    }
+
+    public void setYearlycosts(Integer yearlycosts) {
+        this.yearlycosts = yearlycosts;
+    }
 }

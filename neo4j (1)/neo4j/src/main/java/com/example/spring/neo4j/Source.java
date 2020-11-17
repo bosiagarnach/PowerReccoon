@@ -1,5 +1,6 @@
 package com.example.spring.neo4j;
 
+import org.neo4j.driver.util.Pair;
 import org.neo4j.ogm.annotation.NodeEntity;
 
 @NodeEntity
@@ -10,6 +11,10 @@ public class Source {
     private String description;
     private String url;
     private Long rate;
+
+    private String longdescription;
+    private Pair<Integer, Integer> investcosts;
+    private Integer yearlycosts;
 
     public Long getId() {
         return id;
@@ -49,5 +54,29 @@ public class Source {
 
     public void setRate(Long rate) {
         this.rate = rate;
+    }
+
+    public String getLongdescription() {
+        return longdescription;
+    }
+
+    public void setLongdescription(String longdescription) {
+        this.longdescription = longdescription;
+    }
+
+    public Pair<Integer, Integer> getInvestcosts() {
+        return investcosts;
+    }
+
+    public void setInvestcosts(Pair<Integer, Integer> investcosts) {
+        this.investcosts = investcosts;
+    }
+
+    public Integer getYearlycosts() {
+        return yearlycosts;
+    }
+
+    public void setYearlycosts(Integer yearlycosts) {
+        this.yearlycosts = yearlycosts;
     }
 }

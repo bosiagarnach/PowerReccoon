@@ -25,6 +25,8 @@
                 <th>Opis</th>
                 <th>URL przykładowej ilustracji</th>
                 <th>Rating</th>
+                <th>Długi Opis</th>
+                <th>Koszty roczne utrzymania</th>
                 <th>_</th>
                 <th>_</th>
                 <th>_</th>
@@ -35,6 +37,8 @@
                 <td th:text="${source.description}"></td>
                 <td th:text="${source.url}"></td>
                 <td th:text="${source.rate}"></td>
+                <td th:text="${source.longdescription}"></td>
+                <td th:text="${source.yearlycosts}"></td>
                 <td><a th:href="${'/source/show/' + source.id}">View</a> </td>
                 <td><a th:href="${'/source/edit/' + source.id}">Edit</a> </td>
                 <td><a th:href="${'/source/delete/' + source.id}">Delete</a> </td>

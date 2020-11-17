@@ -18,6 +18,9 @@ public class SourceFormToSource implements Converter<SourceForm, Source> {
         source.setName(sourceForm.getName());
         source.setRate(sourceForm.getRate());
         source.setUrl(sourceForm.getUrl());
+        source.setInvestcosts(sourceForm.getInvestcosts());
+        source.setLongdescription(sourceForm.getLongdescription());
+        source.setYearlycosts(sourceForm.getYearlycosts());
         return source;
     }
 
