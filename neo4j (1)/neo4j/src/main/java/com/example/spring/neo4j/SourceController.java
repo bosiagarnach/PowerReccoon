@@ -1,15 +1,18 @@
 package com.example.spring.neo4j;
 
 import com.example.spring.neo4j.converters.SourceToSourceForm;
+import com.example.spring.neo4j.nodes.Answears;
+import com.example.spring.neo4j.nodes.Source;
 import com.example.spring.neo4j.services.SourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+//@RestController
 @Controller
 public class SourceController {
 
@@ -36,6 +39,7 @@ public class SourceController {
     @RequestMapping("/userview")
     public String loadUserView(Model model){
         model.addAttribute("sources", sourceService.listAll());
+        model.addAttribute("answears", new Answears());
         return "source/userview";
     }
 
@@ -84,5 +88,40 @@ public class SourceController {
         return "redirect:/source/list";
     }
 
+    @GetMapping("/sourceFuels/{name}")
+    public Source getInfo(@PathVariable String name){
+        return sourceService.findByName(name);
+    }
 
+    @GetMapping("/updateRating")
+    public List<Source> updateRating(Model model){
+        List<Source> sourceList = sourceService.listAll();
+
+        System.out.println("list assigned to sourceList correctly");
+        System.out.println(""+ sourceList.size());
+        System.out.println(""+sourceList);
+        for (int i = 0; i < sourceList.size();i++){
+            System.out.println(" "+i);
+            Source source = sourceList.get(i);
+            System.out.println(" "+source.getId());
+            System.out.println(""+source.getYearlycosts());
+            //sourceService.updateRating(source);
+        }
+        model.addAttribute("sources", sourceService.listAll());
+        return sourceService.listAll();
+    }
+
+    @RequestMapping(value = "/userview", method = RequestMethod.POST)
+    public String submitForm(@ModelAttribute("answears") Answears answears) {
+        List<Source> sourceList = sourceService.listAll();
+        for (int i = 0; i < sourceList.size();i++){
+            System.out.println(" "+i);
+            Source source = sourceList.get(i);
+            sourceService.updateRating(source,answears);
+        }
+
+        System.out.println("" + answears.getStorage());
+
+        return "redirect:userview";
+    }
 }

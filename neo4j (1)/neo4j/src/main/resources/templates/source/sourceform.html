@@ -53,6 +53,19 @@
                 </div>
             </div>
 
+            <div class="form-group" th:class="${#fields.hasErrors('longdescription')} ? 'form-group has-error' : 'form-group'">
+                <label class="col-sm-2 control-label">Długi opis:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{longdescription}" th:errorclass="has-error"/>
+
+                    <span class="help-block">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('longdescription')}" th:text="${err}" />
+                       </ul>
+                    </span>
+                </div>
+            </div>
+
             <div class="form-group" th:class="${#fields.hasErrors('url')} ? 'form-group has-error' : 'form-group'">
                 <label class="col-sm-2 control-label">Obraz Url:</label>
                 <div class="col-sm-10">
@@ -66,10 +79,23 @@
                 </div>
             </div>
 
+            <div class="form-group" th:class="${#fields.hasErrors('yearlycosts')} ? 'form-group has-error' : 'form-group'">
+                <label class="col-sm-2 control-label">Roczny koszt utrzymania:</label>
+                <div class="col-sm-10">
+                    <input type="number" min="0" step="1" class="form-control" th:field="*{yearlycosts}" th:errorclass="has-error"/>
+
+                    <span class="help-block">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('yearlycosts')}" th:text="${err}" />
+                       </ul>
+                    </span>
+                </div>
+            </div>
+
             <div class="form-group" th:class="${#fields.hasErrors('rate')} ? 'form-group has-error' : 'form-group'">
                 <label class="col-sm-2 control-label">Rating:</label>
                 <div class="col-sm-10">
-                    <input type="number" min="0" max="100000" step="1" class="form-control" th:field="*{rate}" th:errorclass="has-error"/>
+                    <input type="number" min="0" max="100000" step="0.1" class="form-control" th:field="*{rate}" th:errorclass="has-error"/>
 
                     <span class="help-block">
                        <ul>
@@ -78,6 +104,8 @@
                     </span>
                 </div>
             </div>
+
+
 
 
             <div class="row">

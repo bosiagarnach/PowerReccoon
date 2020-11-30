@@ -1,7 +1,10 @@
-package com.example.spring.neo4j;
+package com.example.spring.neo4j.nodes;
 
 import org.neo4j.driver.util.Pair;
 import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
+
+import java.util.List;
 
 @NodeEntity
 public class Source {
@@ -10,11 +13,15 @@ public class Source {
     private String name;
     private String description;
     private String url;
-    private Long rate;
+    private Float rate;
 
     private String longdescription;
     private Pair<Integer, Integer> investcosts;
     private Integer yearlycosts;
+
+    @Relationship(type="Fueled", direction = Relationship.OUTGOING)
+    private List<Fuel> fuels;
+
 
     public Long getId() {
         return id;
@@ -48,11 +55,11 @@ public class Source {
         this.url = url;
     }
 
-    public Long getRate() {
+    public Float getRate() {
         return rate;
     }
 
-    public void setRate(Long rate) {
+    public void setRate(Float rate) {
         this.rate = rate;
     }
 
@@ -78,5 +85,13 @@ public class Source {
 
     public void setYearlycosts(Integer yearlycosts) {
         this.yearlycosts = yearlycosts;
+    }
+
+    public List<Fuel> getFuels() {
+        return fuels;
+    }
+
+    public void setFuels(List<Fuel> fuels) {
+        this.fuels = fuels;
     }
 }

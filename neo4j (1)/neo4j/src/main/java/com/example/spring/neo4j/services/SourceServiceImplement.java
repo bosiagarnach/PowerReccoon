@@ -1,6 +1,7 @@
 package com.example.spring.neo4j.services;
 
-import com.example.spring.neo4j.Source;
+import com.example.spring.neo4j.nodes.Answears;
+import com.example.spring.neo4j.nodes.Source;
 import com.example.spring.neo4j.SourceForm;
 import com.example.spring.neo4j.converters.SourceFormToSource;
 import com.example.spring.neo4j.repositories.SourceRepository;
@@ -55,5 +56,89 @@ public class SourceServiceImplement implements SourceService {
         return savedSource;
     }
 
+    @Override
+    public Source findByName(String name) {
+        return sourceRepository.findByName(name);
+    }
+
+    @Override
+    public Source updateRating(Source source, Answears answears) {
+        System.out.println("in updateRating");
+
+        switch (answears.getEcology()){
+            case "0":
+                System.out.println("No ecology answar");
+                break;
+            case "1":
+                System.out.println("Do not care about ecology");
+                break;
+            case "2":
+                Float newRateValue = new Float((source.getFuels().get(0).getEcology() * 0.5)) + source.getRate();
+                source.setRate(newRateValue);
+                break;
+            case "3":
+                newRateValue = new Float(source.getFuels().get(0).getEcology()) + source.getRate();
+                source.setRate(newRateValue);
+            default:
+                System.out.println("No ecology answar");
+        }
+
+        switch (answears.getAnnualCosts()){
+            case "option1":
+                System.out.println(""+answears.getAnnualCosts());
+                if(source.getYearlycosts()>501){
+                    Float newRateValue = Float.sum(source.getRate(),-10) ;
+                    source.setRate(newRateValue);
+                }
+                break;
+            case "option2":
+                if(source.getYearlycosts()>2001){
+                    Float newRateValue = Float.sum(source.getRate(), -10);
+                    source.setRate(newRateValue);
+                }
+                break;
+            case "option3":
+                break;
+            default:
+                System.out.println(""+answears.getAnnualCosts());
+                System.out.println("No answear to annual costs question");
+        }
+
+        switch (answears.getStorage()){
+            case "0":
+                if(source.getFuels().get(0).getStorage()<5){
+                    Float newRateValue = Float.sum(source.getRate(),-5) ;
+                    source.setRate(newRateValue);
+                }
+                break;
+            case "1":
+                if(source.getFuels().get(0).getStorage()<5){
+                    Float newRateValue = Float.sum(source.getRate(),-3) ;
+                    source.setRate(newRateValue);
+                }
+                break;
+            case "2":
+                if(source.getFuels().get(0).getStorage()<5){
+                    Float newRateValue = Float.sum(source.getRate(),-1) ;
+                    source.setRate(newRateValue);
+                }
+                else{
+                    Float newRateValue = Float.sum(source.getRate(),3) ;
+                    source.setRate(newRateValue);
+                }
+                break;
+            case "3":
+                break;
+            case "4":
+                break;
+            case "5":
+                break;
+            default:
+                System.out.println("No answear to storage question");
+        }
+
+        sourceRepository.save(source);
+        return source;
+    }
 
 }
