@@ -19,6 +19,7 @@ public class Source {
     private Pair<Integer, Integer> investcosts;
     private Integer yearlycosts;
 
+
     @Relationship(type="Fueled", direction = Relationship.OUTGOING)
     private List<Fuel> fuels;
 

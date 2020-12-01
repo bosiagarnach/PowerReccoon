@@ -2,14 +2,19 @@ package com.example.spring.neo4j;
 
 import com.example.spring.neo4j.converters.SourceToSourceForm;
 import com.example.spring.neo4j.nodes.Answears;
+import com.example.spring.neo4j.nodes.Power;
 import com.example.spring.neo4j.nodes.Source;
+import com.example.spring.neo4j.repositories.FuelRepository;
+import com.example.spring.neo4j.repositories.PowerRepository;
 import com.example.spring.neo4j.services.SourceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //@RestController
@@ -21,6 +26,8 @@ public class SourceController {
 
     private SourceToSourceForm sourceToSourceForm;
 
+    private PowerRepository powerRepository;
+
     @Autowired
     public void setSourceToSourceForm(SourceToSourceForm sourceToSourceForm) {
         this.sourceToSourceForm = sourceToSourceForm;
@@ -30,6 +37,10 @@ public class SourceController {
     public void setSourceService(SourceService sourceService) {
         this.sourceService = sourceService;
     }
+    @Autowired
+    public void setPowerRepository(PowerRepository powerRepository) {
+        this.powerRepository = powerRepository;
+    }
 
     @RequestMapping("/")
     public String redirToList(){
@@ -38,6 +49,9 @@ public class SourceController {
 
     @RequestMapping("/userview")
     public String loadUserView(Model model){
+        List<Power> powers = new ArrayList<>();
+        powerRepository.findAll(Sort.by(Sort.Direction.DESC, "name")).forEach(powers::add);
+        model.addAttribute("powers",powers);
         model.addAttribute("sources", sourceService.listAll());
         model.addAttribute("answears", new Answears());
         return "source/userview";
@@ -124,4 +138,6 @@ public class SourceController {
 
         return "redirect:userview";
     }
+
+
 }

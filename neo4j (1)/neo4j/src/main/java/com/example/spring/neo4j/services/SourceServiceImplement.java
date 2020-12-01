@@ -45,7 +45,6 @@ public class SourceServiceImplement implements SourceService {
     @Override
     public void delete(Long id) {
         sourceRepository.deleteById(id);
-
     }
 
     @Override
@@ -86,14 +85,14 @@ public class SourceServiceImplement implements SourceService {
         switch (answears.getAnnualCosts()){
             case "option1":
                 System.out.println(""+answears.getAnnualCosts());
-                if(source.getYearlycosts()>501){
-                    Float newRateValue = Float.sum(source.getRate(),-10) ;
+                if(source.getYearlycosts()<501){
+                    Float newRateValue = Float.sum(source.getRate(),5) ;
                     source.setRate(newRateValue);
                 }
                 break;
             case "option2":
-                if(source.getYearlycosts()>2001){
-                    Float newRateValue = Float.sum(source.getRate(), -10);
+                if(source.getYearlycosts()<1001){
+                    Float newRateValue = Float.sum(source.getRate(), 5);
                     source.setRate(newRateValue);
                 }
                 break;
@@ -106,14 +105,22 @@ public class SourceServiceImplement implements SourceService {
 
         switch (answears.getStorage()){
             case "0":
-                if(source.getFuels().get(0).getStorage()<5){
+                if(source.getFuels().get(0).getStorage()<6){
                     Float newRateValue = Float.sum(source.getRate(),-5) ;
+                    source.setRate(newRateValue);
+                }
+                else{
+                    Float newRateValue = Float.sum(source.getRate(),5) ;
                     source.setRate(newRateValue);
                 }
                 break;
             case "1":
                 if(source.getFuels().get(0).getStorage()<5){
                     Float newRateValue = Float.sum(source.getRate(),-3) ;
+                    source.setRate(newRateValue);
+                }
+                else{
+                    Float newRateValue = Float.sum(source.getRate(),3) ;
                     source.setRate(newRateValue);
                 }
                 break;
@@ -123,11 +130,15 @@ public class SourceServiceImplement implements SourceService {
                     source.setRate(newRateValue);
                 }
                 else{
-                    Float newRateValue = Float.sum(source.getRate(),3) ;
+                    Float newRateValue = Float.sum(source.getRate(),1) ;
                     source.setRate(newRateValue);
                 }
                 break;
             case "3":
+                if(source.getFuels().get(0).getStorage()<6){
+                    Float newRateValue = Float.sum(source.getRate(),2) ;
+                    source.setRate(newRateValue);
+                }
                 break;
             case "4":
                 break;
