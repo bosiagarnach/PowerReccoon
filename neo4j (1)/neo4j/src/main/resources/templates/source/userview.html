@@ -54,7 +54,10 @@
             <a href="#questions" class="nav-link" role="tab" data-toggle="tab">Pytania personalizujące</a>
         </li>
         <li class="nav-item">
-            <a href="#recommendations" class="nav-link" role="tab" data-toggle="tab">Recomendacje</a>
+            <a href="#recommendations" class="nav-link" role="tab" data-toggle="tab">Rekomendacje</a>
+        </li>
+        <li class="nav-item">
+            <a href="#allsources" class="nav-link" role="tab" data-toggle="tab">Pełna lista źródeł</a>
         </li>
     </ul>
 
@@ -264,7 +267,7 @@
             <div class="container ">
                 <div th:if="${not #lists.isEmpty(sources)} " >
                     <h1></h1>
-                    <h2 class="text-center">Źródła energii</h2>
+                    <h2 class="text-center">Źródła energii cieplnej</h2>
 
                     <table class="table">
                         <tr>
@@ -275,25 +278,81 @@
                             <th>Roczne koszty utrzymania [zł]</th>
                         </tr>
 
+                        <tr th:each="thermal : ${thermalSources}" height="50px">
+                            <td class="align-middle"><img src="${thermal.url}" th:src="${thermal.url}" th:alt="${thermal.url}" height="50px"/></td>
+                            <td th:text="${thermal.rate}" class="align-middle"></td>
+                            <td th:text="${thermal.name}" class="align-middle"></td>
+                            <td th:text="${thermal.description}" class="align-middle"></td>
+                            <td th:text="${thermal.yearlycosts}" class="align-middle"></td>
+                        </tr>
+
+                    </table>
+
+                    <h2 class="text-center">Źródła energii elektrycznej</h2>
+
+                    <table class="table">
+                        <tr>
+                            <th ></th>
+                            <th>Rating</th>
+                            <th>Nazwa źródła</th>
+                            <th>Opis</th>
+                            <th>Roczne koszty utrzymania [zł]</th>
+                        </tr>
+
+                        <tr th:each="electrical : ${electricalSources}" height="50px">
+                            <td class="align-middle"><img src="${electrical.url}" th:src="${electrical.url}" th:alt="${electrical.url}" height="50px"/></td>
+                            <td th:text="${electrical.rate}" class="align-middle"></td>
+                            <td th:text="${electrical.name}" class="align-middle"></td>
+                            <td th:text="${electrical.description}" class="align-middle"></td>
+                            <td th:text="${electrical.yearlycosts}" class="align-middle"></td>
+                        </tr>
+
+                    </table>
+
+                    <div class="container my-3 bg-light">
+                        <div class="col-md-12 text-center">
+                            <button type="button" class="btn btn-lg"><a href="#questions" class="nav-link" role="tab" data-toggle="tab">Wróć do podstawowego rankingu</a></button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="allsources">
+
+            <!-- content of all sources tab -->
+            <div class="container ">
+                <div th:if="${not #lists.isEmpty(sources)} " >
+                    <h1></h1>
+                    <h2 class="text-center"></h2>
+
+                    <table class="table">
+                        <tr>
+                            <th ></th>
+                            <th>Nazwa źródła</th>
+                            <th>Opis</th>
+                            <th>Roczne koszty utrzymania [zł]</th>
+                        </tr>
+
                         <tr th:each="source : ${sources}" height="50px">
                             <td class="align-middle"><img src="${source.url}" th:src="${source.url}" th:alt="${source.url}" height="50px"/></td>
-                            <td th:text="${source.rate}" class="align-middle"></td>
                             <td th:text="${source.name}" class="align-middle"></td>
                             <td th:text="${source.description}" class="align-middle"></td>
                             <td th:text="${source.yearlycosts}" class="align-middle"></td>
                         </tr>
 
-                        <tr th:each="power : ${powers}" height="50px">
-                            <td th:text="${power.id}" class="align-middle"></td>
-                            <td th:text="${power.name}" class="align-middle"></td>
-                            <td th:text="${power.powerSources}" class="align-middle"></td>
-                        </tr>
-
                     </table>
+
                 </div>
             </div>
 
         </div>
+
+
+
+
 
     </div>
 </div>

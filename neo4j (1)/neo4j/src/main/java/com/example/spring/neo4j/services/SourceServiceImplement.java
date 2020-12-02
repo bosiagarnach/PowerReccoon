@@ -27,7 +27,7 @@ public class SourceServiceImplement implements SourceService {
     @Override
     public List<Source> listAll() {
         List<Source> sources = new ArrayList<>();
-        sourceRepository.findAll(Sort.by(Sort.Direction.DESC, "rate")).forEach(sources::add); //fun with Java 8
+        sourceRepository.findAll(Sort.by(Sort.Direction.DESC, "id")).forEach(sources::add); //fun with Java 8
         return sources;
     }
 

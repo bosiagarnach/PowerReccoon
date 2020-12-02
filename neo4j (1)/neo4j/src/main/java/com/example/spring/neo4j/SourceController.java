@@ -14,8 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 //@RestController
 @Controller
@@ -51,7 +50,13 @@ public class SourceController {
     public String loadUserView(Model model){
         List<Power> powers = new ArrayList<>();
         powerRepository.findAll(Sort.by(Sort.Direction.DESC, "name")).forEach(powers::add);
-        model.addAttribute("powers",powers);
+        List<Source> thermalSources = powers.get(0).getPowerSources();
+        List<Source> electricalSources = powers.get(1).getPowerSources();
+        Comparator<Source> compareByRate = (Source s1, Source s2) -> s1.getRate().compareTo(s2.getRate());
+        Collections.sort(thermalSources, compareByRate.reversed());
+        Collections.sort(electricalSources, compareByRate.reversed());
+        model.addAttribute("thermalSources",thermalSources);
+        model.addAttribute("electricalSources",electricalSources);
         model.addAttribute("sources", sourceService.listAll());
         model.addAttribute("answears", new Answears());
         return "source/userview";
