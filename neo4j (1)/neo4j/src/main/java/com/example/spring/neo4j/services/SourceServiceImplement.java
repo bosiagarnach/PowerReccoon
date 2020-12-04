@@ -64,6 +64,31 @@ public class SourceServiceImplement implements SourceService {
     public Source updateRating(Source source, Answears answears) {
         System.out.println("in updateRating");
 
+        switch (answears.getAnnualCosts()){
+            case "option1":
+                System.out.println(""+answears.getAnnualCosts());
+                if(source.getYearlycosts()>501){
+                    Float newRateValue = Float.sum(0,0) ;
+                    source.setRate(newRateValue);
+                    sourceRepository.save(source);
+                    return source;
+                }
+                break;
+            case "option2":
+                if(source.getYearlycosts()>1001){
+                    Float newRateValue = Float.sum(0,0);
+                    source.setRate(newRateValue);
+                    sourceRepository.save(source);
+                    return source;
+                }
+                break;
+            case "option3":
+                break;
+            default:
+                System.out.println(""+answears.getAnnualCosts());
+                System.out.println("No answear to annual costs question");
+        }
+
         switch (answears.getEcology()){
             case "0":
                 System.out.println("No ecology answar");
@@ -78,35 +103,15 @@ public class SourceServiceImplement implements SourceService {
             case "3":
                 newRateValue = new Float(source.getFuels().get(0).getEcology()) + source.getRate();
                 source.setRate(newRateValue);
+                break;
             default:
                 System.out.println("No ecology answar");
-        }
-
-        switch (answears.getAnnualCosts()){
-            case "option1":
-                System.out.println(""+answears.getAnnualCosts());
-                if(source.getYearlycosts()<501){
-                    Float newRateValue = Float.sum(source.getRate(),5) ;
-                    source.setRate(newRateValue);
-                }
-                break;
-            case "option2":
-                if(source.getYearlycosts()<1001){
-                    Float newRateValue = Float.sum(source.getRate(), 5);
-                    source.setRate(newRateValue);
-                }
-                break;
-            case "option3":
-                break;
-            default:
-                System.out.println(""+answears.getAnnualCosts());
-                System.out.println("No answear to annual costs question");
         }
 
         switch (answears.getStorage()){
             case "0":
                 if(source.getFuels().get(0).getStorage()<6){
-                    Float newRateValue = Float.sum(source.getRate(),-5) ;
+                    Float newRateValue = Float.sum(source.getRate(),0) ;
                     source.setRate(newRateValue);
                 }
                 else{
@@ -116,7 +121,7 @@ public class SourceServiceImplement implements SourceService {
                 break;
             case "1":
                 if(source.getFuels().get(0).getStorage()<5){
-                    Float newRateValue = Float.sum(source.getRate(),-3) ;
+                    Float newRateValue = Float.sum(source.getRate(),0) ;
                     source.setRate(newRateValue);
                 }
                 else{
@@ -126,7 +131,7 @@ public class SourceServiceImplement implements SourceService {
                 break;
             case "2":
                 if(source.getFuels().get(0).getStorage()<5){
-                    Float newRateValue = Float.sum(source.getRate(),-1) ;
+                    Float newRateValue = Float.sum(source.getRate(),0) ;
                     source.setRate(newRateValue);
                 }
                 else{

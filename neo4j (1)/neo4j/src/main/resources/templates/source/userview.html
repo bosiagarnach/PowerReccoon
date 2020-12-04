@@ -278,8 +278,8 @@
                             <th>Roczne koszty utrzymania [zł]</th>
                         </tr>
 
-                        <tr th:each="thermal : ${thermalSources}" height="50px">
-                            <td class="align-middle"><img src="${thermal.url}" th:src="${thermal.url}" th:alt="${thermal.url}" height="50px"/></td>
+                        <tr th:each="thermal : ${thermalSources}" height="50px" th:style="${thermal.rate == 0.0} ? 'color: lightgray' : 'color: black;'">
+                            <td class="align-middle"><img src="${thermal.url}" th:src="${thermal.url}" th:alt="${thermal.url}" height="50px "/></td>
                             <td th:text="${thermal.rate}" class="align-middle"></td>
                             <td th:text="${thermal.name}" class="align-middle"></td>
                             <td th:text="${thermal.description}" class="align-middle"></td>
@@ -299,7 +299,7 @@
                             <th>Roczne koszty utrzymania [zł]</th>
                         </tr>
 
-                        <tr th:each="electrical : ${electricalSources}" height="50px">
+                        <tr th:each="electrical : ${electricalSources}" height="50px" th:style="${electrical.rate == 0.0} ? 'color: lightgray' : 'color: black;'">>
                             <td class="align-middle"><img src="${electrical.url}" th:src="${electrical.url}" th:alt="${electrical.url}" height="50px"/></td>
                             <td th:text="${electrical.rate}" class="align-middle"></td>
                             <td th:text="${electrical.name}" class="align-middle"></td>
@@ -311,7 +311,7 @@
 
                     <div class="container my-3 bg-light">
                         <div class="col-md-12 text-center">
-                            <button type="button" class="btn btn-lg"><a href="#questions" class="nav-link" role="tab" data-toggle="tab">Wróć do podstawowego rankingu</a></button>
+                            <button type="button" class="btn btn-lg"><a href="#questions" class="nav-link" role="tab" data-toggle="tab">Resetuj ranking</a></button>
                         </div>
                     </div>
 

@@ -131,12 +131,16 @@ public class SourceController {
     }
 
     @RequestMapping(value = "/userview", method = RequestMethod.POST)
-    public String submitForm(@ModelAttribute("answears") Answears answears) {
+    public String submitForm(@ModelAttribute("answears") Answears answears, Model model) {
         List<Source> sourceList = sourceService.listAll();
         for (int i = 0; i < sourceList.size();i++){
             System.out.println(" "+i);
             Source source = sourceList.get(i);
             sourceService.updateRating(source,answears);
+   //         if (source.getRate()==0){
+     //           List<Source> thermalSources = model.getAttribute("thermalSources");
+      //          sourc.removeIf(e -> e.getId().equals(id));
+      //      }
         }
 
         System.out.println("" + answears.getStorage());
