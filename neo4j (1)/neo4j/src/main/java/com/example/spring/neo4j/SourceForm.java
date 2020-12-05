@@ -21,6 +21,8 @@ public class SourceForm {
     @Relationship(type="Fueled", direction = Relationship.OUTGOING)
     private List<Fuel> fuels;
 
+    private String houseType;
+
     public Long getId() {
         return id;
     }
@@ -91,5 +93,13 @@ public class SourceForm {
 
     public void setFuels(List<Fuel> fuels) {
         this.fuels = fuels;
+    }
+
+    public String getHouseType() {
+        return houseType;
+    }
+
+    public void setHouseType(String houseType) {
+        this.houseType = houseType;
     }
 }

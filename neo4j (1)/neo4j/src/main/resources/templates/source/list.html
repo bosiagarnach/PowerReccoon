@@ -27,6 +27,7 @@
                 <th>Rating</th>
                 <th>Długi Opis</th>
                 <th>Koszty roczne utrzymania</th>
+                <th>Typ domu</th>
                 <th>_</th>
                 <th>_</th>
                 <th>_</th>
@@ -39,6 +40,7 @@
                 <td th:text="${source.rate}"></td>
                 <td th:text="${source.longdescription}"></td>
                 <td th:text="${source.yearlycosts}"></td>
+                <td th:text="${source.houseType}"></td>
                 <td><a th:href="${'/source/show/' + source.id}">View</a> </td>
                 <td><a th:href="${'/source/edit/' + source.id}">Edit</a> </td>
                 <td><a th:href="${'/source/delete/' + source.id}">Delete</a> </td>

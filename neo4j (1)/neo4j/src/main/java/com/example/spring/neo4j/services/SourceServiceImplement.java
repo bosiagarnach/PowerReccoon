@@ -64,6 +64,35 @@ public class SourceServiceImplement implements SourceService {
     public Source updateRating(Source source, Answears answears) {
         System.out.println("in updateRating");
 
+        switch (answears.getHouseType()){
+            case "option1":
+                if (source.getHouseType().matches(".*1.*")==false){
+                    Float newRateValue = Float.sum(0,0) ;
+                    source.setRate(newRateValue);
+                    sourceRepository.save(source);
+                    return source;
+                }
+                break;
+            case "option2":
+                if (source.getHouseType().matches(".*2.*")==false) {
+                    Float newRateValue = Float.sum(0, 0);
+                    source.setRate(newRateValue);
+                    sourceRepository.save(source);
+                    return source;
+                }
+                break;
+            case "option3":
+                if (source.getHouseType().matches(".*3.*")==false){
+                    Float newRateValue = Float.sum(0,0) ;
+                    source.setRate(newRateValue);
+                    sourceRepository.save(source);
+                    return source;
+                }
+                break;
+            default:
+
+        }
+
         switch (answears.getAnnualCosts()){
             case "option1":
                 System.out.println(""+answears.getAnnualCosts());
