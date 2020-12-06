@@ -16,7 +16,7 @@ public class Source {
     private Float rate;
 
     private String longdescription;
-    private Pair<Integer, Integer> investcosts;
+    private Integer investcosts;
     private Integer yearlycosts;
 
     @Relationship(type="Fueled", direction = Relationship.OUTGOING)
@@ -72,13 +72,6 @@ public class Source {
         this.longdescription = longdescription;
     }
 
-    public Pair<Integer, Integer> getInvestcosts() {
-        return investcosts;
-    }
-
-    public void setInvestcosts(Pair<Integer, Integer> investcosts) {
-        this.investcosts = investcosts;
-    }
 
     public Integer getYearlycosts() {
         return yearlycosts;
@@ -102,5 +95,13 @@ public class Source {
 
     public void setHouseType(String houseType) {
         this.houseType = houseType;
+    }
+
+    public Integer getInvestcosts() {
+        return investcosts;
+    }
+
+    public void setInvestcosts(Integer investcosts) {
+        this.investcosts = investcosts;
     }
 }

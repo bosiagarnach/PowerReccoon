@@ -112,23 +112,6 @@ public class SourceController {
         return sourceService.findByName(name);
     }
 
-    @GetMapping("/updateRating")
-    public List<Source> updateRating(Model model){
-        List<Source> sourceList = sourceService.listAll();
-
-        System.out.println("list assigned to sourceList correctly");
-        System.out.println(""+ sourceList.size());
-        System.out.println(""+sourceList);
-        for (int i = 0; i < sourceList.size();i++){
-            System.out.println(" "+i);
-            Source source = sourceList.get(i);
-            System.out.println(" "+source.getId());
-            System.out.println(""+source.getYearlycosts());
-            //sourceService.updateRating(source);
-        }
-        model.addAttribute("sources", sourceService.listAll());
-        return sourceService.listAll();
-    }
 
     @RequestMapping(value = "/userview", method = RequestMethod.POST)
     public String submitForm(@ModelAttribute("answears") Answears answears, Model model) {
@@ -136,6 +119,7 @@ public class SourceController {
         for (int i = 0; i < sourceList.size();i++){
             System.out.println(" "+i);
             Source source = sourceList.get(i);
+
             sourceService.updateRating(source,answears);
    //         if (source.getRate()==0){
      //           List<Source> thermalSources = model.getAttribute("thermalSources");

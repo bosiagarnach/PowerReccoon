@@ -64,6 +64,11 @@ public class SourceServiceImplement implements SourceService {
     public Source updateRating(Source source, Answears answears) {
         System.out.println("in updateRating");
 
+        Float resetRate = Float.sum(10,0) ;
+        source.setRate(resetRate);
+        sourceRepository.save(source);
+
+        if (answears.getHouseType() != null){
         switch (answears.getHouseType()){
             case "option1":
                 if (source.getHouseType().matches(".*1.*")==false){
@@ -90,9 +95,10 @@ public class SourceServiceImplement implements SourceService {
                 }
                 break;
             default:
+                break;
+        }}
 
-        }
-
+        if (answears.getAnnualCosts() != null){
         switch (answears.getAnnualCosts()){
             case "option1":
                 System.out.println(""+answears.getAnnualCosts());
@@ -116,8 +122,9 @@ public class SourceServiceImplement implements SourceService {
             default:
                 System.out.println(""+answears.getAnnualCosts());
                 System.out.println("No answear to annual costs question");
-        }
+        }}
 
+        if (answears.getEcology() != null){
         switch (answears.getEcology()){
             case "0":
                 System.out.println("No ecology answar");
@@ -135,9 +142,10 @@ public class SourceServiceImplement implements SourceService {
                 break;
             default:
                 System.out.println("No ecology answar");
-        }
+        }}
 
-        switch (answears.getStorage()){
+        if (answears.getStorage() != null){
+            switch (answears.getStorage()){
             case "0":
                 if(source.getFuels().get(0).getStorage()<6){
                     Float newRateValue = Float.sum(source.getRate(),0) ;
@@ -169,10 +177,6 @@ public class SourceServiceImplement implements SourceService {
                 }
                 break;
             case "3":
-                if(source.getFuels().get(0).getStorage()<6){
-                    Float newRateValue = Float.sum(source.getRate(),2) ;
-                    source.setRate(newRateValue);
-                }
                 break;
             case "4":
                 break;
@@ -180,7 +184,7 @@ public class SourceServiceImplement implements SourceService {
                 break;
             default:
                 System.out.println("No answear to storage question");
-        }
+        }}
 
         sourceRepository.save(source);
         return source;
