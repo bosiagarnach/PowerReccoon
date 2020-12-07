@@ -122,6 +122,7 @@
                         </div>
                     </fieldset>
 
+                    <!-- question about family type
                     <fieldset class="form-group">
                         <div class="row">
                             <legend class="col-form-label col-sm-2 pt-0">Wybierz opcję najbardziej zbliżoną do twojej rodziny</legend>
@@ -165,34 +166,33 @@
                             </div>
                         </div>
                     </fieldset>
-
+                    -->
 
                     <fieldset class="form-group">
                         <div class="row">
                             <legend class="col-form-label col-sm-2 pt-0">Jakim budżetem inwestycyjnym dysponujesz?</legend>
                             <div class="col-sm-10">
                                 <div class="form-check">
-                                    <input class="form-check-input" th:field="*{investmentRange}" type="radio" name="investmentRange" id="investmentRange1" value="option1" disabled>
-                                    <label class="form-check-label" for="investmentRange1">
+                                    <input class="form-check-input" th:field="*{investmentCosts}" type="radio" name="investmentCosts" id="investmentCosts1" value="option1" >
+                                    <label class="form-check-label" for="investmentCosts1">
                                         do 3 tys. zł
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" th:field="*{investmentRange}" type="radio" name="investmentRange" id="investmentRange2" value="option2" disabled>
-                                    <label class="form-check-label" for="investmentRange2">
+                                    <input class="form-check-input" th:field="*{investmentCosts}" type="radio" name="investmentCosts" id="investmentCosts2" value="option2">
+                                    <label class="form-check-label" for="investmentCosts2">
                                         3 - 5 tys.
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" th:field="*{investmentRange}" type="radio" name="investmentRange" id="investmentRange3" value="option3" disabled>
-                                    <label class="form-check-label" for="investmentRange3">
+                                    <input class="form-check-input" th:field="*{investmentCosts}" type="radio" name="investmentCosts" id="investmentCosts3" value="option3" >
                                         5 - 10 tys.
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" th:field="*{investmentRange}" type="radio" name="investmentRange" id="investmentRange4" value="option4" disabled>
-                                    <label class="form-check-label" for="investmentRange4">
-                                        mogę ponad 20 tys.
+                                    <input class="form-check-input" th:field="*{investmentCosts}" type="radio" name="investmentCosts" id="investmentCosts4" value="option4">
+                                    <label class="form-check-label" for="investmentCosts4">
+                                        dowolnie
                                     </label>
                                 </div>
                             </div>
@@ -230,7 +230,7 @@
                         <div class="col-sm-2">Konserwacja</div>
                         <div class="col-sm-10">
                             <div class="form-check">
-                                <input class="form-check-input" th:field="*{conservation}" type="checkbox" name="conservation" id="gridCheck1" value = "true" disabled>
+                                <input class="form-check-input" th:field="*{conservation}" type="checkbox" name="conservation" id="gridCheck1" value = "true">
                                 <label class="form-check-label" for="gridCheck1">
                                     Mam czas i chęci by dbać o regularną konserwację (regularne czyszczenie, obserwacja)                    </label>
                             </div>
@@ -274,6 +274,7 @@
                             <th>Rating</th>
                             <th>Nazwa źródła</th>
                             <th>Opis</th>
+                            <th>Koszty inwestycyjne</th>
                             <th>Roczne koszty utrzymania [zł]</th>
                         </tr>
 
@@ -282,6 +283,7 @@
                             <td th:text="${thermal.rate}" class="align-middle"></td>
                             <td th:text="${thermal.name}" class="align-middle"></td>
                             <td th:text="${thermal.description}" class="align-middle"></td>
+                            <td th:text="${thermal.investcosts}" class="align-middle"></td>
                             <td th:text="${thermal.yearlycosts}" class="align-middle"></td>
                         </tr>
 
@@ -295,6 +297,7 @@
                             <th>Rating</th>
                             <th>Nazwa źródła</th>
                             <th>Opis</th>
+                            <th>Koszty inwestycyjne</th>
                             <th>Roczne koszty utrzymania [zł]</th>
                         </tr>
 
@@ -303,6 +306,7 @@
                             <td th:text="${electrical.rate}" class="align-middle"></td>
                             <td th:text="${electrical.name}" class="align-middle"></td>
                             <td th:text="${electrical.description}" class="align-middle"></td>
+                            <td th:text="${electrical.investcosts}" class="align-middle"></td>
                             <td th:text="${electrical.yearlycosts}" class="align-middle"></td>
                         </tr>
 
@@ -332,6 +336,7 @@
                             <th ></th>
                             <th>Nazwa źródła</th>
                             <th>Opis</th>
+                            <th>Koszty inwestycyjne</th>
                             <th>Roczne koszty utrzymania [zł]</th>
                         </tr>
 
@@ -339,6 +344,7 @@
                             <td class="align-middle"><img src="${source.url}" th:src="${source.url}" th:alt="${source.url}" height="50px"/></td>
                             <td th:text="${source.name}" class="align-middle"></td>
                             <td th:text="${source.description}" class="align-middle"></td>
+                            <td th:text="${source.investcosts}" class="align-middle"></td>
                             <td th:text="${source.yearlycosts}" class="align-middle"></td>
                         </tr>
 

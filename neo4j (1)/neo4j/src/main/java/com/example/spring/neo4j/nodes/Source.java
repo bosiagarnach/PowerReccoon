@@ -23,6 +23,7 @@ public class Source {
     private List<Fuel> fuels;
 
     private String houseType;
+    private String maintenanceNeeds;
 
     public Long getId() {
         return id;
@@ -103,5 +104,13 @@ public class Source {
 
     public void setInvestcosts(Integer investcosts) {
         this.investcosts = investcosts;
+    }
+
+    public String getMaintenanceNeeds() {
+        return maintenanceNeeds;
+    }
+
+    public void setMaintenanceNeeds(String maintenanceNeeds) {
+        this.maintenanceNeeds = maintenanceNeeds;
     }
 }

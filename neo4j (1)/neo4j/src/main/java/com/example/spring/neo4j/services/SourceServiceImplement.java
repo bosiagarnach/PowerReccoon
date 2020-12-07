@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class SourceServiceImplement implements SourceService {
@@ -97,6 +98,41 @@ public class SourceServiceImplement implements SourceService {
             default:
                 break;
         }}
+
+
+        if (answears.getInvestmentCosts() != null){
+            switch (answears.getInvestmentCosts()){
+                case "option1":
+                    System.out.println(""+answears.getInvestmentCosts());
+                    if(source.getInvestcosts()>3001){
+                        Float newRateValue = Float.sum(0,0) ;
+                        source.setRate(newRateValue);
+                        sourceRepository.save(source);
+                        return source;
+                    }
+                    break;
+                case "option2":
+                    if(source.getInvestcosts()>5001){
+                        Float newRateValue = Float.sum(0,0);
+                        source.setRate(newRateValue);
+                        sourceRepository.save(source);
+                        return source;
+                    }
+                    break;
+                case "option3":
+                    if(source.getInvestcosts()>10001){
+                        Float newRateValue = Float.sum(0,0);
+                        source.setRate(newRateValue);
+                        sourceRepository.save(source);
+                        return source;
+                    }
+                    break;
+                case "option4":
+                    break;
+                default:
+                    System.out.println(""+answears.getInvestmentCosts());
+                    System.out.println("No answear to annual costs question");
+            }}
 
         if (answears.getAnnualCosts() != null){
         switch (answears.getAnnualCosts()){
@@ -185,6 +221,32 @@ public class SourceServiceImplement implements SourceService {
             default:
                 System.out.println("No answear to storage question");
         }}
+
+        if (answears.getConservation() != null){
+            switch (answears.getConservation()){
+                case "true":
+                    System.out.println("there is true conservation answar "+answears.getConservation());
+                    if(Objects.equals(source.getMaintenanceNeeds(),"low")){
+                        Float newRateValue = Float.sum(source.getRate(),6);
+                        System.out.println("newRateValue "+newRateValue);
+
+                        source.setRate(newRateValue);
+                        System.out.println("source get rate "+source.getRate());
+
+                    }
+                    else if(Objects.equals(source.getMaintenanceNeeds(),"medium")){
+                        Float newRateValue = Float.sum(source.getRate(),3);
+                        System.out.println("newRateValue "+newRateValue);
+
+                        source.setRate(newRateValue);
+                        System.out.println("newRateValue "+source.getRate());
+
+                    }
+
+                    break;
+                default:
+                    System.out.println("No conservation answar "+answears.getConservation());
+            }}
 
         sourceRepository.save(source);
         return source;

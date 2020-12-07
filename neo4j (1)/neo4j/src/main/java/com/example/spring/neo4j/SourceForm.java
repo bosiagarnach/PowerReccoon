@@ -22,6 +22,8 @@ public class SourceForm {
     private List<Fuel> fuels;
 
     private String houseType;
+    private String maintenanceNeeds;
+
 
     public Long getId() {
         return id;
@@ -101,5 +103,13 @@ public class SourceForm {
 
     public void setInvestcosts(Integer investcosts) {
         this.investcosts = investcosts;
+    }
+
+    public String getMaintenanceNeeds() {
+        return maintenanceNeeds;
+    }
+
+    public void setMaintenanceNeeds(String maintenanceNeeds) {
+        this.maintenanceNeeds = maintenanceNeeds;
     }
 }

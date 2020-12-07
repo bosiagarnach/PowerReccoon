@@ -22,6 +22,7 @@ public class SourceFormToSource implements Converter<SourceForm, Source> {
         source.setLongdescription(sourceForm.getLongdescription());
         source.setYearlycosts(sourceForm.getYearlycosts());
         source.setHouseType(sourceForm.getHouseType());
+        source.setMaintenanceNeeds(sourceForm.getMaintenanceNeeds());
         return source;
     }
 
