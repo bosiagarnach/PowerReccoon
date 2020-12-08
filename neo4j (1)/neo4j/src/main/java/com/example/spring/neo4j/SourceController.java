@@ -50,8 +50,8 @@ public class SourceController {
     public String loadUserView(Model model){
         List<Power> powers = new ArrayList<>();
         powerRepository.findAll(Sort.by(Sort.Direction.DESC, "name")).forEach(powers::add);
-        List<Source> thermalSources = powers.get(0).getPowerSources();
-        List<Source> electricalSources = powers.get(1).getPowerSources();
+        List<Source> thermalSources = powers.get(1).getPowerSources();
+        List<Source> electricalSources = powers.get(0).getPowerSources();
         Comparator<Source> compareByRate = (Source s1, Source s2) -> s1.getRate().compareTo(s2.getRate());
         Collections.sort(thermalSources, compareByRate.reversed());
         Collections.sort(electricalSources, compareByRate.reversed());

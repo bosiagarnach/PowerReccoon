@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class SourceServiceImplement implements SourceService {
@@ -28,7 +26,7 @@ public class SourceServiceImplement implements SourceService {
     @Override
     public List<Source> listAll() {
         List<Source> sources = new ArrayList<>();
-        sourceRepository.findAll(Sort.by(Sort.Direction.DESC, "id")).forEach(sources::add); //fun with Java 8
+        sourceRepository.findAll(Sort.by(Sort.Direction.ASC, "name")).forEach(sources::add); //fun with Java 8
         return sources;
     }
 
@@ -169,11 +167,12 @@ public class SourceServiceImplement implements SourceService {
                 System.out.println("Do not care about ecology");
                 break;
             case "2":
-                Float newRateValue = new Float((source.getFuels().get(0).getEcology() * 0.5)) + source.getRate();
+                //source.getFuels().get(0).getEcology()
+                Float newRateValue = new Float((Collections.max(source.getFuels(), Comparator.comparing(s -> s.getEcology())).getEcology() * 0.5)) + source.getRate();
                 source.setRate(newRateValue);
                 break;
             case "3":
-                newRateValue = new Float(source.getFuels().get(0).getEcology()) + source.getRate();
+                newRateValue = new Float(Collections.max(source.getFuels(), Comparator.comparing(s -> s.getEcology())).getEcology()) + source.getRate();
                 source.setRate(newRateValue);
                 break;
             default:
@@ -181,9 +180,11 @@ public class SourceServiceImplement implements SourceService {
         }}
 
         if (answears.getStorage() != null){
+            int minFuelsStorage = Collections.min(source.getFuels(), Comparator.comparing(s -> s.getStorage())).getStorage();
+            //source.getFuels().get(0).getStorage()
             switch (answears.getStorage()){
             case "0":
-                if(source.getFuels().get(0).getStorage()<6){
+                if(minFuelsStorage<6){
                     Float newRateValue = Float.sum(source.getRate(),0) ;
                     source.setRate(newRateValue);
                 }
@@ -193,7 +194,7 @@ public class SourceServiceImplement implements SourceService {
                 }
                 break;
             case "1":
-                if(source.getFuels().get(0).getStorage()<5){
+                if(minFuelsStorage<5){
                     Float newRateValue = Float.sum(source.getRate(),0) ;
                     source.setRate(newRateValue);
                 }
@@ -203,7 +204,7 @@ public class SourceServiceImplement implements SourceService {
                 }
                 break;
             case "2":
-                if(source.getFuels().get(0).getStorage()<5){
+                if(minFuelsStorage<5){
                     Float newRateValue = Float.sum(source.getRate(),0) ;
                     source.setRate(newRateValue);
                 }
@@ -225,27 +226,65 @@ public class SourceServiceImplement implements SourceService {
         if (answears.getConservation() != null){
             switch (answears.getConservation()){
                 case "true":
-                    System.out.println("there is true conservation answar "+answears.getConservation());
                     if(Objects.equals(source.getMaintenanceNeeds(),"low")){
                         Float newRateValue = Float.sum(source.getRate(),6);
-                        System.out.println("newRateValue "+newRateValue);
-
                         source.setRate(newRateValue);
-                        System.out.println("source get rate "+source.getRate());
-
                     }
                     else if(Objects.equals(source.getMaintenanceNeeds(),"medium")){
                         Float newRateValue = Float.sum(source.getRate(),3);
-                        System.out.println("newRateValue "+newRateValue);
-
                         source.setRate(newRateValue);
-                        System.out.println("newRateValue "+source.getRate());
-
                     }
 
                     break;
                 default:
                     System.out.println("No conservation answar "+answears.getConservation());
+            }}
+
+        if (answears.getDailyElectricityUse() != null){
+            switch (answears.getDailyElectricityUse()){
+                case "true":
+                    if(source.getName().toLowerCase().contains("panel") || source.getName().toLowerCase().contains("turbina")){
+                        Float newRateValue = Float.sum(source.getRate(),5);
+                        source.setRate(newRateValue);
+                    }
+                    break;
+                default:
+                    System.out.println("No daily electricity use answar ");
+            }}
+
+        if (answears.getDailyThermalUse() != null){
+            switch (answears.getDailyThermalUse()){
+                case "true":
+                    if(source.getName().toLowerCase().contains("kolektor")){
+                        Float newRateValue = Float.sum(source.getRate(),5);
+                        source.setRate(newRateValue);
+                    }
+                    break;
+                default:
+                    System.out.println("No daily thermal use answar ");
+            }}
+
+
+        if (answears.getRoofSite() != null){
+            switch (answears.getRoofSite()){
+                case "south":
+                    if(source.getName().toLowerCase().contains("panel") || source.getName().toLowerCase().contains("kolektor")){
+                        Float newRateValue = Float.sum(source.getRate(),5);
+                        source.setRate(newRateValue);
+                    }
+                    break;
+                case "westEast":
+                    break;
+                case "none":
+                    if(source.getName().toLowerCase().contains("panel") || source.getName().toLowerCase().contains("kolektor")){
+                        Float newRateValue = Float.sum(0,0);
+                        source.setRate(newRateValue);
+                        sourceRepository.save(source);
+                        return source;
+                    }
+                    break;
+                default:
+                    System.out.println("No answear to roof exposition");
             }}
 
         sourceRepository.save(source);

@@ -12,6 +12,10 @@ public class Answears {
     private String conservation;
     private String storage;
     private String ecology;
+    private String agd;
+    private String dailyElectricityUse;
+    private String dailyThermalUse;
+    private String roofSite;
 
     public String getHouseType() {
         return houseType;
@@ -67,5 +71,37 @@ public class Answears {
 
     public void setInvestmentCosts(String investmentCosts) {
         this.investmentCosts = investmentCosts;
+    }
+
+    public String getAgd() {
+        return agd;
+    }
+
+    public void setAgd(String agd) {
+        this.agd = agd;
+    }
+
+    public String getDailyElectricityUse() {
+        return dailyElectricityUse;
+    }
+
+    public void setDailyElectricityUse(String dailyElectricityUse) {
+        this.dailyElectricityUse = dailyElectricityUse;
+    }
+
+    public String getDailyThermalUse() {
+        return dailyThermalUse;
+    }
+
+    public void setDailyThermalUse(String dailyThermalUse) {
+        this.dailyThermalUse = dailyThermalUse;
+    }
+
+    public String getRoofSite() {
+        return roofSite;
+    }
+
+    public void setRoofSite(String roofSite) {
+        this.roofSite = roofSite;
     }
 }

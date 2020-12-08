@@ -230,8 +230,8 @@
                         <div class="col-sm-2">Konserwacja</div>
                         <div class="col-sm-10">
                             <div class="form-check">
-                                <input class="form-check-input" th:field="*{conservation}" type="checkbox" name="conservation" id="gridCheck1" value = "true">
-                                <label class="form-check-label" for="gridCheck1">
+                                <input class="form-check-input" th:field="*{conservation}" type="checkbox" name="conservation" id="conservation" value = "true">
+                                <label class="form-check-label" for="conservation">
                                     Mam czas i chęci by dbać o regularną konserwację (regularne czyszczenie, obserwacja)                    </label>
                             </div>
                         </div>
@@ -247,10 +247,66 @@
                         <div class="invalid-feedback">Wybierz jedną z opcji</div>
                     </div>
 
+                    <!-- question -->
+                    <div class="form-group row">
+                        <div class="col-sm-2">Zużycie energii elektrycznej</div>
+                        <div class="col-sm-10">
+                            <div class="form-check">
+                                <input class="form-check-input" th:field="*{dailyElectricityUse}" type="checkbox" name="dailyElectricityUse" id="dailyElectricityUse" value = "true">
+                                <label class="form-check-label" for="dailyElectricityUse">
+                                    Przynajmniej jeden z domowników wykonuje w domu zawód, który wymaga znacznego zużycia energii electrycznej w godzinach roboczych (9:00-17:00) </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">Zużycie ciepła</div>
+                        <div class="col-sm-10">
+                            <div class="form-check">
+                                <input class="form-check-input" th:field="*{dailyThermalUse}" type="checkbox" name="dailyThermalUse" id="dailyThermalUse" value = "true">
+                                <label class="form-check-label" for="dailyThermalUse">
+                                    W godzinach porannych i południowych występuje w budynku duże zużycie energii cieplnej lub ciepłej wody (np. basen) </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <fieldset class="form-group">
+                        <div class="row">
+                            <legend class="col-form-label col-sm-2 pt-0">Ekspozycja danchu, na którym może zostać umieszczona instalacja słoneczna?</legend>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <input class="form-check-input" th:field="*{roofSite}" type="radio" name="roofSite" id="roofSite1" value="south" >
+                                    <label class="form-check-label" for="roofSite1">
+                                        strona południowa
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" th:field="*{roofSite}" type="radio" name="roofSite" id="roofSite2" value="westEast">
+                                    <label class="form-check-label" for="roofSite2">
+                                        wschód lub zachód
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" th:field="*{roofSite}" type="radio" name="roofSite" id="roofSite3" value="none" >
+                                    <label class="form-check-label" for="roofSite3">
+                                     nie mam miejsca na instalację słoneczną
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+
                     <label for="storage">Oceń od 0 do 5 swoje możliwości magazynowania paliwa</label>
                     <input type="range" value="5" min="0" max="5" step="1" th:field="*{storage}" class="custom-range" id="storage" name="storage">
 
-                    <!--submit-->
+                    <!-- question about family type
+                    <label for="agd">Oceń od 0 (niezbędne minimum) do 5 (zdecydowanie więcej niż przeciętna rodzina) ilość sprzętów pobierających energię elektryczną w twoim domu</label>
+                    <input type="range" value="5" min="0" max="5" step="1" th:field="*{agd}" class="custom-range" id="agd" name="agd">
+                    -->
+
+<!--submit-->
                     <div class="form-group row">
                         <div class="col-sm-10">
                             <button type="submit" class="btn btn-primary">Zapisz odpowiedzi</button>
@@ -266,6 +322,29 @@
             <div class="container ">
                 <div th:if="${not #lists.isEmpty(sources)} " >
                     <h1></h1>
+                    <h2 class="text-center">Źródła energii elektrycznej</h2>
+
+                    <table class="table">
+                        <tr>
+                            <th ></th>
+                            <th>Rating</th>
+                            <th>Nazwa źródła</th>
+                            <th>Opis</th>
+                            <th>Koszty inwestycyjne</th>
+                            <th>Roczne koszty utrzymania [zł]</th>
+                        </tr>
+
+                        <tr th:each="electrical : ${electricalSources}" height="50px" th:style="${electrical.rate == 0.0} ? 'color: lightgray' : 'color: black;'">
+                            <td class="align-middle"><img src="${electrical.url}" th:src="${electrical.url}" th:alt="${electrical.url}" height="50px"/></td>
+                            <td th:text="${electrical.rate}" class="align-middle"></td>
+                            <td th:text="${electrical.name}" class="align-middle"></td>
+                            <td th:text="${electrical.description}" class="align-middle"></td>
+                            <td th:text="${electrical.investcosts}" class="align-middle"></td>
+                            <td th:text="${electrical.yearlycosts}" class="align-middle"></td>
+                        </tr>
+
+                    </table>
+
                     <h2 class="text-center">Źródła energii cieplnej</h2>
 
                     <table class="table">
@@ -285,29 +364,6 @@
                             <td th:text="${thermal.description}" class="align-middle"></td>
                             <td th:text="${thermal.investcosts}" class="align-middle"></td>
                             <td th:text="${thermal.yearlycosts}" class="align-middle"></td>
-                        </tr>
-
-                    </table>
-
-                    <h2 class="text-center">Źródła energii elektrycznej</h2>
-
-                    <table class="table">
-                        <tr>
-                            <th ></th>
-                            <th>Rating</th>
-                            <th>Nazwa źródła</th>
-                            <th>Opis</th>
-                            <th>Koszty inwestycyjne</th>
-                            <th>Roczne koszty utrzymania [zł]</th>
-                        </tr>
-
-                        <tr th:each="electrical : ${electricalSources}" height="50px" th:style="${electrical.rate == 0.0} ? 'color: lightgray' : 'color: black;'">>
-                            <td class="align-middle"><img src="${electrical.url}" th:src="${electrical.url}" th:alt="${electrical.url}" height="50px"/></td>
-                            <td th:text="${electrical.rate}" class="align-middle"></td>
-                            <td th:text="${electrical.name}" class="align-middle"></td>
-                            <td th:text="${electrical.description}" class="align-middle"></td>
-                            <td th:text="${electrical.investcosts}" class="align-middle"></td>
-                            <td th:text="${electrical.yearlycosts}" class="align-middle"></td>
                         </tr>
 
                     </table>
