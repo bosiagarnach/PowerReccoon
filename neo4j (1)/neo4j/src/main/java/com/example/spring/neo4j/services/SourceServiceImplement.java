@@ -2,7 +2,7 @@ package com.example.spring.neo4j.services;
 
 import com.example.spring.neo4j.nodes.Answears;
 import com.example.spring.neo4j.nodes.Source;
-import com.example.spring.neo4j.SourceForm;
+import com.example.spring.neo4j.forms.SourceForm;
 import com.example.spring.neo4j.converters.SourceFormToSource;
 import com.example.spring.neo4j.repositories.SourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,7 +102,7 @@ public class SourceServiceImplement implements SourceService {
             switch (answears.getInvestmentCosts()){
                 case "option1":
                     System.out.println(""+answears.getInvestmentCosts());
-                    if(source.getInvestcosts()>3001){
+                    if(source.getInvestcosts()>3000){
                         Float newRateValue = Float.sum(0,0) ;
                         source.setRate(newRateValue);
                         sourceRepository.save(source);
@@ -110,7 +110,7 @@ public class SourceServiceImplement implements SourceService {
                     }
                     break;
                 case "option2":
-                    if(source.getInvestcosts()>5001){
+                    if(source.getInvestcosts()>5000){
                         Float newRateValue = Float.sum(0,0);
                         source.setRate(newRateValue);
                         sourceRepository.save(source);
@@ -118,7 +118,7 @@ public class SourceServiceImplement implements SourceService {
                     }
                     break;
                 case "option3":
-                    if(source.getInvestcosts()>10001){
+                    if(source.getInvestcosts()>10000){
                         Float newRateValue = Float.sum(0,0);
                         source.setRate(newRateValue);
                         sourceRepository.save(source);
@@ -136,7 +136,7 @@ public class SourceServiceImplement implements SourceService {
         switch (answears.getAnnualCosts()){
             case "option1":
                 System.out.println(""+answears.getAnnualCosts());
-                if(source.getYearlycosts()>501){
+                if(source.getYearlycosts()>2000){
                     Float newRateValue = Float.sum(0,0) ;
                     source.setRate(newRateValue);
                     sourceRepository.save(source);
@@ -144,7 +144,7 @@ public class SourceServiceImplement implements SourceService {
                 }
                 break;
             case "option2":
-                if(source.getYearlycosts()>1001){
+                if(source.getYearlycosts()>5000){
                     Float newRateValue = Float.sum(0,0);
                     source.setRate(newRateValue);
                     sourceRepository.save(source);
@@ -194,7 +194,7 @@ public class SourceServiceImplement implements SourceService {
                 }
                 break;
             case "1":
-                if(minFuelsStorage<5){
+                if(minFuelsStorage<6){
                     Float newRateValue = Float.sum(source.getRate(),0) ;
                     source.setRate(newRateValue);
                 }
@@ -204,7 +204,7 @@ public class SourceServiceImplement implements SourceService {
                 }
                 break;
             case "2":
-                if(minFuelsStorage<5){
+                if(minFuelsStorage<6){
                     Float newRateValue = Float.sum(source.getRate(),0) ;
                     source.setRate(newRateValue);
                 }

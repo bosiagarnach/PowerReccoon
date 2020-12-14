@@ -2,7 +2,7 @@ package com.example.spring.neo4j.converters;
 
 
 import com.example.spring.neo4j.nodes.Source;
-import com.example.spring.neo4j.SourceForm;
+import com.example.spring.neo4j.forms.SourceForm;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 

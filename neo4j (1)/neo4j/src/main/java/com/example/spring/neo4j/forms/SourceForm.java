@@ -1,4 +1,4 @@
-package com.example.spring.neo4j;
+package com.example.spring.neo4j.forms;
 
 import com.example.spring.neo4j.nodes.Fuel;
 import org.neo4j.driver.util.Pair;

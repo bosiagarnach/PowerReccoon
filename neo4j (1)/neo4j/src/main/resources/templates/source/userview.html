@@ -79,7 +79,7 @@
                     <div class="container my-3 bg-light">
                         <div class="col-md-12 text-center">
                             <button type="button" class="btn btn-lg"><a href="#questions" class="nav-link" role="tab" data-toggle="tab">Pytania personalizujące</a></button>
-                            <button type="button" class="btn btn-lg" onclick="#questions"><a href="#recommendations" class="nav-link" role="tab" data-toggle="tab">Recomendacje</a></button>
+                            <button type="button" class="btn btn-lg" onclick="#questions"><a href="#recommendations" class="nav-link" role="tab" data-toggle="tab">Rekomendacje</a></button>
                         </div>
                     </div>
                 </div>
@@ -206,13 +206,13 @@
                                 <div class="form-check">
                                     <input class="form-check-input" th:field="*{annualCosts}" type="radio" name="investmentRange" id="annualCosts1" value="option1" >
                                     <label class="form-check-label" for="annualCosts1">
-                                        do 500 zł
+                                        do 2 tys. zł
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" th:field="*{annualCosts}" type="radio" name="annualCosts" id="annualCosts2" value="option2">
                                     <label class="form-check-label" for="annualCosts2">
-                                        do 1 tys. zł
+                                        do 5 tys. zł
                                     </label>
                                 </div>
                                 <div class="form-check">
@@ -331,7 +331,7 @@
                             <th>Nazwa źródła</th>
                             <th>Opis</th>
                             <th>Koszty inwestycyjne</th>
-                            <th>Roczne koszty utrzymania [zł]</th>
+                            <th>Roczne koszty utrzymania</th>
                         </tr>
 
                         <tr th:each="electrical : ${electricalSources}" height="50px" th:style="${electrical.rate == 0.0} ? 'color: lightgray' : 'color: black;'">
@@ -354,7 +354,7 @@
                             <th>Nazwa źródła</th>
                             <th>Opis</th>
                             <th>Koszty inwestycyjne</th>
-                            <th>Roczne koszty utrzymania [zł]</th>
+                            <th>Roczne koszty utrzymania</th>
                         </tr>
 
                         <tr th:each="thermal : ${thermalSources}" height="50px" th:style="${thermal.rate == 0.0} ? 'color: lightgray' : 'color: black;'">
@@ -393,7 +393,7 @@
                             <th>Nazwa źródła</th>
                             <th>Opis</th>
                             <th>Koszty inwestycyjne</th>
-                            <th>Roczne koszty utrzymania [zł]</th>
+                            <th>Roczne koszty utrzymania</th>
                         </tr>
 
                         <tr th:each="source : ${sources}" height="50px">
