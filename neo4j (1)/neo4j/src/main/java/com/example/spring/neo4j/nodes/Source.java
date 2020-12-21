@@ -13,6 +13,7 @@ public class Source {
     private String name;
     private String description;
     private String url;
+    private String image;
     private Float rate;
 
     private String longdescription;
@@ -112,5 +113,13 @@ public class Source {
 
     public void setMaintenanceNeeds(String maintenanceNeeds) {
         this.maintenanceNeeds = maintenanceNeeds;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

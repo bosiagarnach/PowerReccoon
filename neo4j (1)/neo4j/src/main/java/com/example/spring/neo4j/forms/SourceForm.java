@@ -24,6 +24,8 @@ public class SourceForm {
     private String houseType;
     private String maintenanceNeeds;
 
+    private String image;
+
 
     public Long getId() {
         return id;
@@ -111,5 +113,13 @@ public class SourceForm {
 
     public void setMaintenanceNeeds(String maintenanceNeeds) {
         this.maintenanceNeeds = maintenanceNeeds;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

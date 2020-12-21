@@ -79,6 +79,19 @@
                 </div>
             </div>
 
+            <div class="form-group" th:class="${#fields.hasErrors('image')} ? 'form-group has-error' : 'form-group'">
+                <label class="col-sm-2 control-label">Obraz duży:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{image}" th:errorclass="has-error"/>
+
+                    <span class="help-block">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('image')}" th:text="${err}" />
+                       </ul>
+                    </span>
+                </div>
+            </div>
+
             <div class="form-group" th:class="${#fields.hasErrors('investcosts')} ? 'form-group has-error' : 'form-group'">
                 <label class="col-sm-2 control-label">Koszty inwestycyjne:</label>
                 <div class="col-sm-10">

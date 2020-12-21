@@ -21,6 +21,7 @@ public class SourceToSourceForm implements Converter<Source, SourceForm> {
         sourceForm.setYearlycosts(source.getYearlycosts());
         sourceForm.setHouseType(source.getHouseType());
         sourceForm.setMaintenanceNeeds(source.getMaintenanceNeeds());
+        sourceForm.setImage(source.getImage());
         return sourceForm;
     }
 
