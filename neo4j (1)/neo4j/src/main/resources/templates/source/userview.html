@@ -182,18 +182,18 @@
                                 <div class="form-check">
                                     <input class="form-check-input" th:field="*{investmentCosts}" type="radio" name="investmentCosts" id="investmentCosts1" value="option1" >
                                     <label class="form-check-label" for="investmentCosts1">
-                                        do 3 tys. zł
+                                        do 10 tys. zł
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" th:field="*{investmentCosts}" type="radio" name="investmentCosts" id="investmentCosts2" value="option2">
                                     <label class="form-check-label" for="investmentCosts2">
-                                        3 - 5 tys.
+                                        10 - 15 tys.
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" th:field="*{investmentCosts}" type="radio" name="investmentCosts" id="investmentCosts3" value="option3" >
-                                        5 - 10 tys.
+                                        15 - 20 tys.
                                     </label>
                                 </div>
                                 <div class="form-check">
@@ -213,13 +213,13 @@
                                 <div class="form-check">
                                     <input class="form-check-input" th:field="*{annualCosts}" type="radio" name="investmentRange" id="annualCosts1" value="option1" >
                                     <label class="form-check-label" for="annualCosts1">
-                                        do 2 tys. zł
+                                        do 1 tys. zł
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" th:field="*{annualCosts}" type="radio" name="annualCosts" id="annualCosts2" value="option2">
                                     <label class="form-check-label" for="annualCosts2">
-                                        do 5 tys. zł
+                                        do 2,5 tys. zł
                                     </label>
                                 </div>
                                 <div class="form-check">
@@ -412,7 +412,7 @@
                             <td th:text="${source.investcosts}" class="align-middle"></td>
                             <td th:text="${source.yearlycosts}" class="align-middle"></td>
                         </tr>
-                        <tr th:id="${source.id}" class="hidden_row" style="display:none;" >
+                        <tr th:id="${source.id}" class="hidden_row" style="background-color: #fafafa; display:none;" >
                             <td colspan=3 >
                                 <span th:text="${source.longdescription}"></span>
                                 <span><br><br></span>

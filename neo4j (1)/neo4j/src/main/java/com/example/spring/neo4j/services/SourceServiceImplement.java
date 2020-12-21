@@ -102,7 +102,7 @@ public class SourceServiceImplement implements SourceService {
             switch (answears.getInvestmentCosts()){
                 case "option1":
                     System.out.println(""+answears.getInvestmentCosts());
-                    if(source.getInvestcosts()>3000){
+                    if(source.getInvestcosts()>10000){
                         Float newRateValue = Float.sum(0,0) ;
                         source.setRate(newRateValue);
                         sourceRepository.save(source);
@@ -110,7 +110,7 @@ public class SourceServiceImplement implements SourceService {
                     }
                     break;
                 case "option2":
-                    if(source.getInvestcosts()>5000){
+                    if(source.getInvestcosts()>15000){
                         Float newRateValue = Float.sum(0,0);
                         source.setRate(newRateValue);
                         sourceRepository.save(source);
@@ -118,7 +118,7 @@ public class SourceServiceImplement implements SourceService {
                     }
                     break;
                 case "option3":
-                    if(source.getInvestcosts()>10000){
+                    if(source.getInvestcosts()>200000){
                         Float newRateValue = Float.sum(0,0);
                         source.setRate(newRateValue);
                         sourceRepository.save(source);
@@ -136,7 +136,7 @@ public class SourceServiceImplement implements SourceService {
         switch (answears.getAnnualCosts()){
             case "option1":
                 System.out.println(""+answears.getAnnualCosts());
-                if(source.getYearlycosts()>2000){
+                if(source.getYearlycosts()>1000){
                     Float newRateValue = Float.sum(0,0) ;
                     source.setRate(newRateValue);
                     sourceRepository.save(source);
@@ -144,7 +144,7 @@ public class SourceServiceImplement implements SourceService {
                 }
                 break;
             case "option2":
-                if(source.getYearlycosts()>5000){
+                if(source.getYearlycosts()>2500){
                     Float newRateValue = Float.sum(0,0);
                     source.setRate(newRateValue);
                     sourceRepository.save(source);
